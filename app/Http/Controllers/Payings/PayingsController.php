@@ -70,7 +70,8 @@ class PayingsController extends Controller
         $request->validate([
             '_link' => 'required',
             'operation' => 'required',
-            'tipo' => 'required'
+            'tipo' => 'required',
+            'pais' => 'required'
         ]);
 
         if(Paying::create($request->all())){
@@ -100,13 +101,15 @@ class PayingsController extends Controller
             'id' => 'required',
             '_link' => 'required',
             'operation' => 'required',
-            'tipo' => 'required'
+            'tipo' => 'required',
+            'pais' => 'required'
         ]);
 
         $paying = Paying::find($request->input('id'));
         $paying->_link = $request->input('_link');
         $paying->operation = $request->input('operation');
         $paying->tipo = $request->input('tipo');
+        $paying->pais = $request->input('pais');
 
         if($paying->save()){
             return Redirect::route($request->input('tipo').'.index');

@@ -91,6 +91,7 @@ class UsersController extends Controller
             'form.operation' => 'required',
             'form.city' => 'required',
             'form.region' => 'required',
+            'form.pais' => 'required',
             'form.phone' => 'required|unique:users,phone',
             'role' => 'required'
         ]);
@@ -103,6 +104,7 @@ class UsersController extends Controller
         $user->operation = $data['operation'];
         $user->city = $data['city'];
         $user->region = $data['region'];
+        $user->region = $data['pais'];
         $user->phone = $data['phone'];
         unset($data);
         if($user->save()){
@@ -140,6 +142,7 @@ class UsersController extends Controller
             'form.operation' => 'required',
             'form.city' => 'required',
             'form.region' => 'required',
+            'form.pais' => 'required',
             'form.phone' => 'required|max:10|unique:users,phone,'.$data['id'],
             'role' => 'required'
         ]);
@@ -151,6 +154,7 @@ class UsersController extends Controller
         $user->operation = $data['operation'];
         $user->city = $data['city'];
         $user->region = $data['region'];
+        $user->region = $data['pais'];
         $user->phone = $data['phone'];
         unset($data);
         if($user->save()){

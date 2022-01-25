@@ -13,12 +13,14 @@ class PayingsTableMigrate extends Migration
      */
     public function up()
     {
-        Schema::table('payings2', function (Blueprint $table) {
+        Schema::create('payings2', function (Blueprint $table) {
             $table->id();
             $table->string('operation');
             $table->string('_link');
             $table->string('tipo');
             $table->string('periodo');
+            $table->foreignId('pais')->constrained('paises')->nullable();
+            $table->timestamps();
         });
     }
 

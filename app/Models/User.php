@@ -32,7 +32,8 @@ class User extends Authenticatable
         'operation',
         'city',
         'region',
-        'phone'
+        'phone',
+        'pais'
     ];
 
     /**

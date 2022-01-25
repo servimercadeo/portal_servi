@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Paying extends Model
+class Pais extends Model
 {
     use HasFactory;
 
-    protected $table = 'payings2';
+    protected $table = 'paises';
 
-    protected $fillable = ['_link','operation', 'tipo', 'pais'];
+    protected $fillable = ['name'];
 
+    public $timestamps = false;
 }
