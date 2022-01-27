@@ -67,6 +67,9 @@ export default defineComponent({
         /**funcion para filtrar la columnas como rol de la tabal de usuarios */
         filterItem(item, key){
             if(Array.isArray(key)){
+                if(key[1] == 'obj'){
+                    return item[key[0]][key[2]]
+                }
                 return item[key[0]][0][key[1]]
             }else{
                 return item[key]

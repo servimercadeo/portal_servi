@@ -3,8 +3,8 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <table-component :headers="['Link','Operacíon']" ref="table"
-                     :keys="['_link','operation']" :info="payind.data"
+                    <table-component :headers="['Link','Operacíon', 'Pais']" ref="table"
+                     :keys="['_link','operation', ['pais','obj','name']]" :info="payind.data"
                      :vista="'User'" :actions="true" @crear="crearPaying" @editar="editarPaying"
                      @eliminar="eliminarPaying" @filtrar="fillPaying"></table-component>
                 </div>

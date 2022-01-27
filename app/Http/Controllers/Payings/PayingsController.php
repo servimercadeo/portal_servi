@@ -18,7 +18,7 @@ class PayingsController extends Controller
      * @return View
      */
     public function indexLiquidaciones(){
-        $query = Paying::where('tipo', 'liquidacion');
+        $query = Paying::with('pais')->where('tipo', 'liquidacion');
 
         if(Auth::user()->hasRole(['admin','dtv_hugs'])){
             $payinds = $query->paginate(30);
@@ -28,7 +28,7 @@ class PayingsController extends Controller
         }else{
             $query = $query->where('operation', (Auth::user()->hasRole('directv'))?'directv':'hughesnet');
         }
-        $payinds = $query->paginate(30);
+        $payinds = $query->where('id_pais', Auth::user()->id_pais)->paginate(30);
         return Inertia::render('Payings/index', ['payinds' => $payinds,'tipo' => 'liquidación']);
     }
 
@@ -48,7 +48,7 @@ class PayingsController extends Controller
         }else{
             $query = $query->where('operation', (Auth::user()->hasRole('directv'))?'directv':'hughesnet');
         }
-        $payinds = $query->paginate(30);
+        $payinds = $query->where('id_pais', Auth::user()->id_pais)->paginate(30);
         return Inertia::render('Payings/index', ['payinds' => $payinds,'tipo' => 'retención']);
     }
 
@@ -58,6 +58,9 @@ class PayingsController extends Controller
      * @return View
      */
     public function create(){
+        return Inertia::render('Admin/PayingsCreate');
+    }
+    public function createL(){
         return Inertia::render('Admin/PayingsCreate');
     }
 
@@ -71,7 +74,7 @@ class PayingsController extends Controller
             '_link' => 'required',
             'operation' => 'required',
             'tipo' => 'required',
-            'pais' => 'required'
+            'id_pais' => 'required'
         ]);
 
         if(Paying::create($request->all())){
@@ -102,14 +105,15 @@ class PayingsController extends Controller
             '_link' => 'required',
             'operation' => 'required',
             'tipo' => 'required',
-            'pais' => 'required'
+            'id_pais' => 'required'
         ]);
 
         $paying = Paying::find($request->input('id'));
         $paying->_link = $request->input('_link');
         $paying->operation = $request->input('operation');
         $paying->tipo = $request->input('tipo');
-        $paying->pais = $request->input('pais');
+        $paying->periodo = $request->input('periodo');
+        $paying->id_pais = $request->input('id_pais');
 
         if($paying->save()){
             return Redirect::route($request->input('tipo').'.index');

@@ -33,7 +33,7 @@ class User extends Authenticatable
         'city',
         'region',
         'phone',
-        'pais'
+        'id_pais'
     ];
 
     /**
@@ -65,4 +65,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function pais(){
+        return $this->belongsTo('App\Models\Pais','id_pais','id');
+    }
 }

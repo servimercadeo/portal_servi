@@ -47,7 +47,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::prefix('payings')->group(function (){
                 Route::get('/liquidaciones', [Controllers\Payings\PayingsController::class, 'indexLiquidaciones'])->name('liquidacion.index');
                 Route::get('/retenciones', [Controllers\Payings\PayingsController::class, 'indexRetenciones'])->name('retencion.index');
-                Route::get('/create', [Controllers\Payings\PayingsController::class, 'create'])->name('liquidacion.create');
+                Route::get('/createL', [Controllers\Payings\PayingsController::class, 'create'])->name('liquidacion.create');
                 Route::get('/create', [Controllers\Payings\PayingsController::class, 'create'])->name('retencion.create');
 
                 Route::post('/insert', [Controllers\Payings\PayingsController::class, 'insert'])->name('payings.insert');

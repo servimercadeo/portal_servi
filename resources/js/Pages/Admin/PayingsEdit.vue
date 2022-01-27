@@ -13,6 +13,14 @@
                     <jet-input id="operation" type="text" class="mt-1 block w-full" v-model="form.operation" required autocomplete="new-password" />
                 </div>
 
+                <div class="mt-2">
+                    <jet-label for="pais" value="Pais" />
+                    <select class="form-select" form-select-sm name="pais" id="" v-model="form.id_pais">
+                        <option :value="paying.pais.id" selected>{{paying.pais.name}}</option>
+                        <option v-for="pais in fillPaises" :key="pais.id" :value="pais.id">{{pais.name}}</option>
+                    </select>
+                </div>
+
                 <div class="justify-end mt-3 mb-2 d-flex flex-row-reverse">
 
                     <jet-button class="ml-4 btn-orage">
@@ -54,11 +62,16 @@
                     _link: '',
                     operation: '',
                     tipo: '',
+                    periodo: '',
+                    id_pais: ''
                 }),
+                fillPaises: {}
             }
         },
         methods:{
             submit() {
+                let date = new Date()
+                this.form.periodo = this.form.operation+'-'+date.getMonth()+'-'+date.getFullYear()
                 this.$inertia.post(route('payings.update'), this.form)
             },
             /**
@@ -69,6 +82,11 @@
              */
             assignForm(){
                 Object.assign(this.form,this.paying)
+                let x = this.paying.pais.id
+                this.form.id_pais = x
+                this.fillPaises = this.$page.props.paises.filter(function(pais){
+                    return pais.id != x
+                })
             }
         },
         mounted() {

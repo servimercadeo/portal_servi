@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
-            $table->foreignId('pais')->constrained('paises')->nullable();
+            $table->foreignId('id_pais')->constrained('paises')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
@@ -43,7 +43,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paises');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('paises');
     }
 }

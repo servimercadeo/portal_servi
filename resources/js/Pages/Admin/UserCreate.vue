@@ -43,11 +43,19 @@
                     <jet-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required />
                 </div>
 
-                <div class="mt-2">
+                <div class="mt-2 col-6">
                     <jet-label for="rol" value="Rol" />
                     <select class="form-select" form-select-sm name="rol" id="" v-model="role">
                         <option disabled value="">Seleciona un Rol</option>
                         <option v-for="rol in roles" :key="rol" :value="rol.id">{{rol.name}}</option>
+                    </select>
+                </div>
+
+                <div class="mt-2 col-6">
+                    <jet-label for="pais" value="Pais" />
+                    <select class="form-select" form-select-sm name="pais" id="" v-model="form.pais">
+                        <option disabled value="">Seleciona un Pais</option>
+                        <option v-for="pais in $page.props.paises" :key="pais.id" :value="pais.id">{{pais.name}}</option>
                     </select>
                 </div>
 
@@ -95,6 +103,7 @@
                     operation: '',
                     city: '',
                     region: '',
+                    pais: 0,
                     phone: '',
                 }),
                 role: ''

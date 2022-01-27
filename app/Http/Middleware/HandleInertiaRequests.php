@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use App\Models\Pais;
 use Auth;
 
 class HandleInertiaRequests extends Middleware
@@ -40,6 +41,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'global_url' => config('app.global_url'),
             'role' => (Auth::check()) ? Auth::user()->getRoleNames():'no_rol',
+            'paises' => Pais::all(),
         ]);
     }
 }

@@ -26,7 +26,7 @@
               <jet-nav-link :href="route('liquidacion.index')" :active="route().current('liquidacion.index')">
                   Liquidaciones
               </jet-nav-link>
-              <jet-nav-link v-if="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs')" :href="route('retencion.index')" :active="route().current('retencion.index')">
+              <jet-nav-link v-if="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs') || $page.props.role.includes('admin')" :href="route('retencion.index')" :active="route().current('retencion.index')">
                   Retenciones
               </jet-nav-link>
             </template>

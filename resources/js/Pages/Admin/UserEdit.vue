@@ -43,11 +43,19 @@
                     <jet-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required autocomplete="new-password" />
                 </div>
 
-                <div class="mt-2">
+                <div class="mt-2 col-6">
                     <jet-label for="rol" value="Rol" />
                     <select class="form-select" form-select-sm name="rol" id="" v-model="role">
                         <option :value="this.user.roles[0].id" selected>{{this.user.roles[1].name}}</option>
                         <option v-for="rol in fillRoles" :key="rol" :value="rol.id">{{rol.name}}</option>
+                    </select>
+                </div>
+
+                <div class="mt-2 col-6">
+                    <jet-label for="pais" value="Pais" />
+                    <select class="form-select" form-select-sm name="pais" id="" v-model="form.pais">
+                        <option :value="this.user.pais.id" selected>{{ this.user.pais.name }}</option>
+                        <option v-for="pais in fillPaises" :key="pais.id" :value="pais.id">{{pais.name}}</option>
                     </select>
                 </div>
 
@@ -97,10 +105,12 @@
                     operation: '',
                     city: '',
                     region: '',
+                    pais: '',
                     phone: '',
                 }),
                 role: '',
                 fillRoles: {},
+                fillPaises: {}
             }
         },
         methods:{
@@ -119,6 +129,11 @@
                 this.role = x;
                 this.fillRoles = this.roles.filter(function(rol){
                     return rol.id != x
+                })
+                x = this.user.pais.id
+                this.form.pais = x
+                this.fillPaises = this.$page.props.paises.filter(function(pais){
+                    return pais.id != x
                 })
             }
         },

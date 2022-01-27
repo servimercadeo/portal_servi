@@ -23,7 +23,7 @@ class UsersController extends Controller
      */
 
     public function index(){
-        $user = User::select('id','name','operation','email','city','region','phone')->with('roles:id,name')->paginate(30);
+        $user = User::select('id','name','operation','email','city','region', 'id_pais','phone')->with(['roles:id,name', 'pais:id,name'])->paginate(30);
 
         return Inertia::render('Admin/Users', compact('user'));
     }
@@ -37,11 +37,13 @@ class UsersController extends Controller
     public function fillter(Request $request){
         $filters = $request->input('filters');
         $fillRol = $filters['roles'];
+        $fillPais = $filters['pais'];
         unset($filters['roles']);
+        unset($filters['pais']);
         $fill = makeFillters($filters);
-        $users = User::select('id','name','operation','email','city','region','phone')
-        ->with('roles:id,name')->where($fill)->whereRelation('roles','name', 'like', '%'.$fillRol.'%')
-        ->paginate(30);
+        $users = User::select('id','name','operation','email','city','region', 'id_pais','phone')
+        ->with('roles:id,name', 'pais:id,name')->where($fill)->whereRelation('roles','name', 'like', '%'.$fillRol.'%')
+        ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')->paginate(30);
 
         return response()->json(['status' => 1 , 'users' => $users]);
         
@@ -104,7 +106,7 @@ class UsersController extends Controller
         $user->operation = $data['operation'];
         $user->city = $data['city'];
         $user->region = $data['region'];
-        $user->region = $data['pais'];
+        $user->id_pais = $data['pais'];
         $user->phone = $data['phone'];
         unset($data);
         if($user->save()){
@@ -154,7 +156,7 @@ class UsersController extends Controller
         $user->operation = $data['operation'];
         $user->city = $data['city'];
         $user->region = $data['region'];
-        $user->region = $data['pais'];
+        $user->id_pais = $data['pais'];
         $user->phone = $data['phone'];
         unset($data);
         if($user->save()){
