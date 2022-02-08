@@ -23,7 +23,7 @@ class UsersController extends Controller
      */
 
     public function index(){
-        $user = User::select('id','name','operation','email','city','region', 'id_pais','phone')->with(['roles:id,name', 'pais:id,name'])->paginate(30);
+        $user = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit')->with(['roles:id,name', 'pais:id,name'])->paginate(30);
 
         return Inertia::render('Admin/Users', compact('user'));
     }
@@ -41,7 +41,7 @@ class UsersController extends Controller
         unset($filters['roles']);
         unset($filters['pais']);
         $fill = makeFillters($filters);
-        $users = User::select('id','name','operation','email','city','region', 'id_pais','phone')
+        $users = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit')
         ->with('roles:id,name', 'pais:id,name')->where($fill)->whereRelation('roles','name', 'like', '%'.$fillRol.'%')
         ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')->paginate(30);
 
@@ -94,7 +94,8 @@ class UsersController extends Controller
             'form.city' => 'required',
             'form.region' => 'required',
             'form.pais' => 'required',
-            'form.phone' => 'required|unique:users,phone',
+            'form.phone' => 'required|max:10|unique:users,phone',
+            'form.nit' => 'required|unique:users,nit',
             'role' => 'required'
         ]);
 
@@ -108,6 +109,7 @@ class UsersController extends Controller
         $user->region = $data['region'];
         $user->id_pais = $data['pais'];
         $user->phone = $data['phone'];
+        $user->nit = $data['nit'];
         unset($data);
         if($user->save()){
             $user->assignRole($request->input('role'));
@@ -146,9 +148,11 @@ class UsersController extends Controller
             'form.region' => 'required',
             'form.pais' => 'required',
             'form.phone' => 'required|max:10|unique:users,phone,'.$data['id'],
+            'form.nit' => 'required|unique:users,nit,'.$data['id'],
             'role' => 'required'
         ]);
 
+        
         $user = User::find($data['id']);
         $user->name = $data['name'];
         $user->email = $data['email'];
@@ -158,6 +162,7 @@ class UsersController extends Controller
         $user->region = $data['region'];
         $user->id_pais = $data['pais'];
         $user->phone = $data['phone'];
+        $user->nit = $data['nit'];
         unset($data);
         if($user->save()){
             if(!$user->hasRole($request->input('role'))){

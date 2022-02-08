@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             'city' => 'manizales',
             'region' => 'caldas',
             'phone' => '3023718033',
+            'nit' => '1053871594',
             'id_pais' => '1'
 
         ])->assignRole('admin');

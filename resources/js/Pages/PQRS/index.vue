@@ -11,10 +11,28 @@
                         <div class="col-md-6 mx-auto mt-3 h-100 section-central pt-2 pb-2 text-center">
                             <img :src="$page.props.global_url+((operation)?'imgs/directtv.svg':'imgs/hnn.png')"
                             class="mx-auto d-block" alt="">
-                            <p class="fs-4 mt-2">{{$page.props.user.name}} has click en el boton para llenar el formulario y dejarnos tu duda</p>
-                            <a :href="(operation) ? urls.drtv : urls.husg " target="_blank" class="btn btn-primary btn-lg">
+                            <!-- <p class="fs-4 mt-2">{{$page.props.user.name}} has click en el boton para llenar el formulario y dejarnos tu duda</p> -->
+                            <!-- <a :href="(operation) ? urls.drtv : urls.husg " target="_blank" class="btn btn-primary btn-lg">
                                 Reportar PQRS
-                            </a>
+                            </a> -->
+                            <iframe width="500px" height="800px" :src="
+                                ((operation) ? urls.drtv : urls.husg)+'?data-values='+
+                                encodeURIComponent(JSON.stringify({
+                                                'NEW-PeDSA75bbvNloIlqM2YwK':
+
+                                                    $page.props.user.email,
+
+                                                'NEW-9RVlRrrgT2EhQ2OiYmPCS':
+
+                                                    'NIT',
+
+                                                'TEXTINPUT-xTY9cvNCGRdvtMtsxbDvn':
+
+                                                    'RAZONSOCIAL',
+
+                                                idAliado: 123,
+
+                                }))" ></iframe>
                         </div>
                     </div>
                 </div>
@@ -46,7 +64,19 @@
             getOperation(){
                 return (this.$page.props.role.includes('dtv_hugs')||this.$page.props.role.includes('directv'))
             }
-        }
+        },
+        mounted() {
+          console.log(this.$page)
+
+            var x = true;
+
+            if(!x){
+                return 1
+            }else{
+                return 0
+            }          
+
+        },
     })
 </script>
 <style lang="scss">
