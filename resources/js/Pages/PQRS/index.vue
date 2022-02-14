@@ -11,28 +11,7 @@
                         <div class="col-md-6 mx-auto mt-3 h-100 section-central pt-2 pb-2 text-center">
                             <img :src="$page.props.global_url+((operation)?'imgs/directtv.svg':'imgs/hnn.png')"
                             class="mx-auto d-block" alt="">
-                            <!-- <p class="fs-4 mt-2">{{$page.props.user.name}} has click en el boton para llenar el formulario y dejarnos tu duda</p> -->
-                            <!-- <a :href="(operation) ? urls.drtv : urls.husg " target="_blank" class="btn btn-primary btn-lg">
-                                Reportar PQRS
-                            </a> -->
-                            <iframe width="500px" height="800px" :src="
-                                ((operation) ? urls.drtv : urls.husg)+'?data-values='+
-                                encodeURIComponent(JSON.stringify({
-                                                'NEW-PeDSA75bbvNloIlqM2YwK':
-
-                                                    $page.props.user.email,
-
-                                                'NEW-9RVlRrrgT2EhQ2OiYmPCS':
-
-                                                    'NIT',
-
-                                                'TEXTINPUT-xTY9cvNCGRdvtMtsxbDvn':
-
-                                                    'RAZONSOCIAL',
-
-                                                idAliado: 123,
-
-                                }))" ></iframe>
+                            <iframe width="500px" height="800px" :src="(operation) ? urls.drtv : urls.husg" ></iframe>
                         </div>
                     </div>
                 </div>
@@ -53,8 +32,8 @@
         data(){
             return{
                 urls:{
-                    husg: 'https://servimercadeo.forms.eureka.click/rVJAnwcc_ZUS08kL_v8NN',
-                    drtv: 'https://servimercadeo.forms.eureka.click/CpyRepby5qgoVryJzdg6R',
+                    husg: '',
+                    drtv: '',
                 },
                 operation: this.getOperation(),
             }
@@ -63,19 +42,24 @@
             /**Funcion para optener la operacíon */
             getOperation(){
                 return (this.$page.props.role.includes('dtv_hugs')||this.$page.props.role.includes('directv'))
+            },
+            /*Funcion para armar la url del jframe*/
+            armarUrls(){
+                this.urls.husg = 'https://servimercadeo.forms.eureka.click/rVJAnwcc_ZUS08kL_v8NN?data-values='+encodeURIComponent(JSON.stringify({
+                    'NEW-SQ13ef3NOWTeuBV80HF3o': this.$page.props.user.email,
+                    'TEXTINPUT-eXfxUXwNMN0tDohn1eHS2': this.$page.props.user.nit,
+                    // razon social 'NEW-oLfOterE6em9LWxjz6FQi': 
+                }))
+                this.urls.drtv = 'https://servimercadeo.forms.eureka.click/CpyRepby5qgoVryJzdg6R?data-values='+encodeURIComponent(JSON.stringify({
+                    'NEW-PeDSA75bbvNloIlqM2YwK': this.$page.props.user.email,
+                    'NEW-9RVlRrrgT2EhQ2OiYmPCS': this.$page.props.user.nit,
+                    //razon social 'TEXTINPUT-xTY9cvNCGRdvtMtsxbDvn':
+
+                }))
             }
         },
         mounted() {
-          console.log(this.$page)
-
-            var x = true;
-
-            if(!x){
-                return 1
-            }else{
-                return 0
-            }          
-
+            this.armarUrls()
         },
     })
 </script>

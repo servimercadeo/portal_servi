@@ -26,7 +26,7 @@
 
         <div class="mb-3">
           <div class="custom-control custom-checkbox">
-            <jet-checkbox id="terms" name="terms" @click="form.terms = !form.terms"/>
+            <jet-checkbox id="terms" name="terms" @click="form.terms = !form.terms" />
 
             <label class="custom-control-label" for="terms">
               <span class="ml-2 text-sm text-gray-600">Acepto <a data-bs-toggle="modal" data-bs-target="#modal_terms" href="#">Terminos y Condiciones</a></span>
@@ -63,22 +63,22 @@
         <div class="modal-body">
           <h3 class="text-center"><strong>AUTORIZACIÓN PARA EL TRATAMIENTO DE DATOS PERSONAS Y SENSIBLES</strong></h3>
           <br>
-          <p>En cumplimiento a lo dispuesto en la Ley 1581 de 2012,"Por el cual se dictan
-             disposiciones generales para laprotección de datos personales" y de conformidad 
-            conlo señalado en el Decreto 1377 de 2013, doy mi consentimientopara el 
-            tratamiento de mis datos personales y sensibles, ymanifiesto que he sido 
+          <p>En cumplimiento a lo dispuesto en la Ley 1581 de 2012, "Por el cual se dictan
+             disposiciones generales para la protección de datos personales" y de conformidad 
+            con lo señalado en el Decreto 1377 de 2013, doy mi consentimiento para el 
+            tratamiento de mis datos personales, sensibles y manifiesto que he sido 
             informado por SERVIMERCADEO S.A.S. y S&M SERVICIOS Y MERCADEO S.A.S de lo siguiente:</p>
           <br>
-          1. SERVIMERCADEO S.A.S. Y S&amp;M SERVICIOS Y MERCADEO S.A.Sactuará como Responsable del Tratamiento 
+          1. SERVIMERCADEO S.A.S. Y S&amp;M SERVICIOS Y MERCADEO S.A.S actuará como Responsable del Tratamiento 
           de mis datos personalesy sensibles, los cuales han sido otorgados voluntariamente.<br><br>2. Mis 
           derechos como titular de los datos son los previstosla Ley  tales como: conocer, actualizar, 
-          rectificar y suprimirmi información personal y sensible, así́ como el derecho a revocarel 
-          consentimiento otorgado para el tratamiento de datos personalesy sensibles.<br><br>3. En 
-          caso de recolección de mi información personal y/o sensible,tengo derecho a contestar o no 
+          rectificar y suprimir mi información personal y sensible, así́ como el derecho a revocar el 
+          consentimiento otorgado para el tratamiento de datos personales y sensibles.<br><br>3. En 
+          caso de recolección de mi información personal y/o sensible, tengo derecho a contestar o no 
           las preguntas que me formulen, y a entregar o no, los datos solicitados.
         </div>
         <div class="modal-footer">
-            <button class="btn btn-orage mx-auto" data-bs-dismiss="modal" aria-label="Close">OK</button>
+            <button class="btn btn-orage mx-auto" data-bs-dismiss="modal" aria-label="Close">Acepto</button>
         </div>
       </div>
     </modal>

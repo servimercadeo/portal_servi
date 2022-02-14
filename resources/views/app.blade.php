@@ -41,6 +41,6 @@
                 </a>
             </section>
         </div>
-        <p class="text-white fs-5 m-0">© 2021 Copyright Servimercadeo</p>
+        <p class="text-white fs-5 m-0">© 2022 Copyright Servimercadeo</p>
     </footer>
 </html>

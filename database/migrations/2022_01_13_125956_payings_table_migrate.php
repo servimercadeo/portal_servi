@@ -19,7 +19,7 @@ class PayingsTableMigrate extends Migration
             $table->string('_link');
             $table->string('tipo');
             $table->string('periodo');
-            $table->foreignId('pais')->constrained('paises')->nullable();
+            $table->foreignId('id_pais')->constrained('paises')->nullable();
             $table->timestamps();
         });
     }
