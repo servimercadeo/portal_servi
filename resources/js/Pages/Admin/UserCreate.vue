@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <jet-label for="nit" value="Telefono" />
+                    <jet-label for="nit" value="NIT" />
                     <jet-input id="nit" type="number" class="mt-1 block w-full" v-model="form.nit" required />
                 </div>
 
