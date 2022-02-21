@@ -18,6 +18,7 @@
         <!-- Scripts -->
         @routes
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="bg-light" style="{{ (Auth::check()&&!Auth::user()->hasRole('admin')) ? 'background-image: url('.asset('imgs/fondo.jpg').') !important;':'' }}">

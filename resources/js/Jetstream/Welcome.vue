@@ -2,13 +2,14 @@
   <div class="row justify-content-center my-5">
     <div class="col-md-12">
       <div id="card-dash" class="card shadow bg-blue text-center">
-        <h1>FORMACIÓN & CAPACITACIÓN</h1>
+        <h1>bienvenido</h1>
         <br>
-        <p>Un Apoyo a Tu Desarrollo</p>
+        <p>¿Que deseas hacer hoy?</p>
         <br>
         <span>
-          <a target="_blank" class="btn btn-light" href="http://formacion.servimercadeo.com/moodle/login/index.php">Entrar</a>
-          <a target="_blank" class="btn btn-outline-light" href="https://servimercadeo.com/">Web Servimercadeo</a>
+          <Link :href="route('users.index')" class="btn btn-outline-light">Gestionar Usuarios</Link>
+          <Link  :href="route('liquidacion.index')" class="btn btn-outline-light">Gestionar Liquidaciones</Link>
+          <Link  :href="route('retencion.index')" class="btn btn-outline-light">Gestionar Retenciones</Link>
         </span>
       </div>
     </div>
@@ -17,11 +18,11 @@
 
 <script>
   import { defineComponent } from 'vue'
-  import JetApplicationLogo from '@/Jetstream/ApplicationLogo.vue'
+  import { Link } from '@inertiajs/inertia-vue3'
 
   export default defineComponent({
     components: {
-      JetApplicationLogo,
+      Link,
     },
   })
 </script>

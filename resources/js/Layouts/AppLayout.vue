@@ -26,7 +26,7 @@
               <jet-nav-link :href="route('liquidacion.index')" :active="route().current('liquidacion.index')">
                   Liquidaciones
               </jet-nav-link>
-              <jet-nav-link v-if="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs') || $page.props.role.includes('admin')" :href="route('retencion.index')" :active="route().current('retencion.index')">
+              <jet-nav-link :href="route('retencion.index')" :active="route().current('retencion.index')">
                   Retenciones
               </jet-nav-link>
             </template>
@@ -40,7 +40,7 @@
               <jet-nav-link :href="route('liquidacion.aliados.index')" :active="route().current('liquidacion.aliados.index')">
                   Liquidaciónes
               </jet-nav-link>
-              <jet-nav-link :href="route('retencion.aliados.index')" :active="route().current('retencion.aliados.index')">
+              <jet-nav-link v-if="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs')" :href="route('retencion.aliados.index')" :active="route().current('retencion.aliados.index')">
                   Retenciónes
               </jet-nav-link>
               <li class="nav-item">
@@ -118,7 +118,7 @@
 
               <template #content>
                 <!-- Account Management -->
-                <h6 class="dropdown-header small text-muted">
+                <!-- <h6 class="dropdown-header small text-muted">
                   Manage Account
                 </h6>
 
@@ -128,14 +128,14 @@
 
                 <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
                   API Tokens
-                </jet-dropdown-link>
+                </jet-dropdown-link> -->
 
-                <hr class="dropdown-divider">
+                <!-- <hr class="dropdown-divider"> -->
 
                 <!-- Authentication -->
                 <form @submit.prevent="logout">
                   <jet-dropdown-link as="button">
-                    Log out
+                    Cerrar Sesión
                   </jet-dropdown-link>
                 </form>
               </template>
@@ -153,7 +153,7 @@
     </header> -->
 
     <!-- Page Content -->
-    <main class="container my-5">
+    <main class="container-fluid my-5">
       <slot></slot>
     </main>
   </div>

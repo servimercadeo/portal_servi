@@ -1,14 +1,14 @@
 <template>
-  <app-layout title="Welcome">
+  <app-layout title="Inicio">
     <template #header>
       <h2 class="h4 font-weight-bold">
         Dashboard
       </h2>
     </template>
     <div class="py-12" id="welcome">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-hidden shadow-xl sm:rounded-lg row">
-              <div class="col-sm-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
+            <div class="overflow-hidden justify-content-center shadow-xl sm:rounded-lg row">
+              <div class="col-sm-2">
                 <div class="card h-100">
                   <img :src="$page.props.global_url+'imgs/politicas.jpg'" class="card-img-top" alt="...">
                   <div class="card-body">
@@ -23,7 +23,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-2">
                 <div class="card h-100">
                   <img :src="$page.props.global_url+'imgs/liquidacion.jpg'" class="card-img-top" alt="...">
                   <div class="card-body">
@@ -33,12 +33,12 @@
                     </p>
                     <br>
                     <a href="" class="btn btn-primary btn-lg">
-                      Diligenciar
+                      Descargar
                     </a> 
                   </div>
                 </div>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-2">
                 <div class="card h-100">
                   <img :src="$page.props.global_url+'imgs/pqrs.jpg'" class="card-img-top" alt="...">
                   <div class="card-body">
@@ -48,8 +48,26 @@
                     </p>
                     <br>
                     <Link :href="route('pqrs')" class="btn btn-primary btn-lg">
-                      Coméntanos
+                      Diligenciar
                     </Link>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="card h-100">
+                  <img :src="$page.props.global_url+'imgs/formato.jpg'" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Formato de Cuenta de Cobro</h5>
+                    <p class="card-text">
+                      ¿No tienes el Formato de Cuenta de Cobro? ¡Descargalo ya!
+                    </p>
+                    <br>
+                    <a v-show="$page.props.role.includes('directv') || $page.props.role.includes('dtv_hugs')" target="_blank" href="https://servimercadeo.bitrix24.es/bitrix/services/main/ajax.php?action=disk.api.file.download&SITE_ID=s1&humanRE=1&fileId=1151199&fileName=MODELO+CUENTA+DE+COBRO+SERVIMERCADEO.docx" class="btn btn-primary btn-lg">
+                      {{'Descargar '+($page.props.role.includes('dtv_hugs')?'Directv':'')}}
+                    </a>
+                    <a v-show="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs') " target="_blank" href="https://bitrix24public.com/servimercadeo.bitrix24.es/docs/pub/9295b171f54db9c24a1becde26d1451e/download/?&token=1l22ti3awlpf" class="btn btn-primary btn-lg" :class="($page.props.role.includes('dtv_hugs'))?'mt-2':''">
+                      {{'Descargar '+($page.props.role.includes('dtv_hugs')?'Hughesnet':'')}}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -110,6 +128,14 @@
             <a :href="btn.link" target="_blank" class="btn btn-secondary btn-lg mt-3 pt-4 pr-3 pl-3 pb-4">{{ btn.text }}</a>
           </div>
         </div>
+      </div>
+    </modal>
+    <modal id="modal_welcome" :show="modal_w">
+      <div class="modal-body bg-light">
+        <img :src="$page.props.global_url+'imgs/welcome.png'" alt="" class="img-fluid">
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-primary mx-auto" data-bs-dismiss="modal" aria-label="Close">OK</button>
       </div>
     </modal>
   </app-layout>
@@ -175,15 +201,29 @@ export default defineComponent({
           ]
         }
       },
-      selecct_item:{}
+      selecct_item:{},
     }
   },
+  computed:{
+    modal_w(){
+      let cookie = decodeURIComponent(document.cookie)
+      cookie = cookie.split(';')
+      if(!cookie.includes('loget=true')){
+        let now = new Date
+        now.setTime(now.getTime() + (360*24*60*60*1000));
+        document.cookie = "loget=true; expires="+now.toUTCString()+";path=/";
+        return true
+      }
+      return false
+    }
+  }
 });
 </script>
 <style lang="scss">
     #welcome{
       .card-img-top{
         min-height: 261px;
+        max-height: 272px;
       }
       .card-text{
         min-height: 46px;
@@ -262,4 +302,10 @@ export default defineComponent({
         }
       }
     }
+
+    // #modal_welcome{
+    //   .modal-body{
+
+    //   }
+    // }
 </style>

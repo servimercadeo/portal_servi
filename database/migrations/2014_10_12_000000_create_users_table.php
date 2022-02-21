@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('city');
             $table->string('region');
             $table->string('phone')->unique();
-            $table->integer('nit')->unique();
+            $table->bigInteger('nit')->unique();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->foreignId('id_pais')->constrained('paises')->nullable();

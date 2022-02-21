@@ -33,7 +33,9 @@ class User extends Authenticatable
         'city',
         'region',
         'phone',
-        'id_pais'
+        'id_pais',
+        'nit',
+        'razon_social'
     ];
 
     /**

@@ -48,6 +48,11 @@
                     <jet-input id="nit" type="number" class="mt-1 block w-full" v-model="form.nit" required />
                 </div>
 
+                <div class="mt-2">
+                    <jet-label for="razon_social" value="Razon Social" />
+                    <jet-input id="razon_social" type="text" class="mt-1 block w-full" v-model="form.razon_social" required />
+                </div>
+
                 <div class="mt-2 col-6">
                     <jet-label for="rol" value="Rol" />
                     <select class="form-select" form-select-sm name="rol" id="" v-model="role">
@@ -112,7 +117,8 @@
                     region: '',
                     pais: '',
                     phone: '',
-                    nit: ''
+                    nit: '',
+                    razon_social: ''
                 }),
                 role: '',
                 fillRoles: {},

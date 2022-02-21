@@ -19,6 +19,10 @@
       },
       maxWidth: {
         default: 'md'
+      },
+      show: {
+        type: Boolean,
+        default: false
       }
     },
 
@@ -30,6 +34,11 @@
           'lg': 'modal-lg',
           'xl': 'modal-xl',
         }[this.maxWidth]
+      }
+    },
+    mounted(){
+      if(this.show){
+        $('#'+this.id).modal('show')
       }
     }
   })
