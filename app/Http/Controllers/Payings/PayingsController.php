@@ -38,7 +38,7 @@ class PayingsController extends Controller
      * @return View
      */
     public function indexRetenciones(){
-        $query = Paying::where('tipo', 'retencion');
+        $query = Paying::with('pais')->where('tipo', 'retencion');
 
         if(Auth::user()->hasRole(['admin','dtv_hugs'])){
             $payinds = $query->paginate(30);
