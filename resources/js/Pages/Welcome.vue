@@ -32,9 +32,24 @@
                       Conoce aquí todo lo que necesitas saber sobre tu Liquidación.
                     </p>
                     <br>
-                    <a href="" class="btn btn-primary btn-lg">
+                    <Link href="route('liquidacion.aliados.index')" class="btn btn-primary btn-lg">
                       Descargar
-                    </a> 
+                    </Link> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="card h-100">
+                  <img :src="$page.props.global_url+'imgs/retencion.png'" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Retencion</h5>
+                    <p class="card-text">
+                      Conoce aquí todo lo que necesitas saber sobre tu Retencion.
+                    </p>
+                    <br>
+                    <Link href="route('retencion.aliados.index')" class="btn btn-primary btn-lg">
+                      Descargar
+                    </Link> 
                   </div>
                 </div>
               </div>
@@ -55,7 +70,7 @@
               </div>
               <div class="col-sm-2">
                 <div class="card h-100">
-                  <img :src="$page.props.global_url+'imgs/formato.jpg'" class="card-img-top" alt="...">
+                  <img :src="$page.props.global_url+'imgs/formato.png'" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Formato de Cuenta de Cobro</h5>
                     <p class="card-text">
@@ -188,15 +203,19 @@ export default defineComponent({
           buttons: [
             {
               text: 'Manejo de inventarios',
-              link: 'https://drive.google.com/uc?id=1S9Jdc9gnJFF9IPtDUc0uvsBF-MrOtW7G'
+              link: 'https://servimercadeo.bitrix24.es/disk/downloadFile/1160935/?&ncc=1&filename=POLITICAS+EQUIPOS+RECUPERADOS+%281%29.pdf'
             },
             {
               text: 'Equipos des-instalados',
-              link: 'https://drive.google.com/uc?id=1xih3aSCcF0E-Zb9qeyodCPoZpLwNhPo7'
+              link: 'https://servimercadeo.bitrix24.es/disk/downloadFile/1160893/?&ncc=1&filename=de-install+Audit+Guidelines+V1.1%2830-Jul-2020%29+GUIA+HUGHES.pdf'
             },
             {
               text: 'Calidad',
               link: 'https://drive.google.com/uc?id=1fwz3NO-e0l3d_Ej0XPNqhJMwMLZvYpXs'
+            },
+            {
+              text: 'Auditoria de Reparaciones',
+              link: 'https://servimercadeo.bitrix24.es/disk/downloadFile/1160911/?&ncc=1&filename=Repair+Audit+Guidelines+V1.1%2831-Jul-2020%29+GUIA+HUGHES.pdf'
             },
           ]
         }

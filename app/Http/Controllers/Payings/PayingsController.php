@@ -49,7 +49,7 @@ class PayingsController extends Controller
             $query = $query->where('operation', (Auth::user()->hasRole('directv'))?'directv':'hughesnet');
         }
         $payinds = $query->where('id_pais', Auth::user()->id_pais)->paginate(30);
-        return Inertia::render('Payings/index', ['payinds' => $payinds,'tipo' => 'retención']);
+        return Inertia::render('Payings/index', ['payinds' => $payinds,'tipo' => 'retencion']);
     }
 
     /**
@@ -136,8 +136,11 @@ class PayingsController extends Controller
 
     public function fillter(Request $request){
         $filters = $request->input('filters');
+        $fillPais = $filters['pais'];
+        unset($filters['pais']);
         $fill = makeFillters($filters);
-        $payings = Paying::select('id','_link', 'operation','tipo')->where($fill)
+        $payings = Paying::where($fill)->with('pais:id,name')
+                            ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')
                             ->where('tipo', $request->input('tipo'))->paginate(30);
 
         return response()->json(['status' => 1 , 'payings' => $payings]);

@@ -46,14 +46,16 @@
             /*Funcion para armar la url del jframe*/
             armarUrls(){
                 this.urls.husg = 'https://servimercadeo.forms.eureka.click/rVJAnwcc_ZUS08kL_v8NN?data-values='+encodeURIComponent(JSON.stringify({
+                    'idUser': this.$page.props.user.id, 
                     'NEW-SQ13ef3NOWTeuBV80HF3o': this.$page.props.user.email,
                     'TEXTINPUT-eXfxUXwNMN0tDohn1eHS2': this.$page.props.user.nit,
-                    // razon social 'NEW-oLfOterE6em9LWxjz6FQi': 
+                    'NEW-oLfOterE6em9LWxjz6FQi': this.$page.props.user.razon_social
                 }))
                 this.urls.drtv = 'https://servimercadeo.forms.eureka.click/CpyRepby5qgoVryJzdg6R?data-values='+encodeURIComponent(JSON.stringify({
+                    'idUser': this.$page.props.user.id,
                     'NEW-PeDSA75bbvNloIlqM2YwK': this.$page.props.user.email,
                     'NEW-9RVlRrrgT2EhQ2OiYmPCS': this.$page.props.user.nit,
-                    //razon social 'TEXTINPUT-xTY9cvNCGRdvtMtsxbDvn':
+                    'TEXTINPUT-xTY9cvNCGRdvtMtsxbDvn': this.$page.props.user.razon_social
 
                 }))
             }
