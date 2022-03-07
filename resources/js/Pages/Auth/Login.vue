@@ -1,7 +1,7 @@
 <template>
 <div>
   <Head title="Log in" />
-
+  <h1 class="text-center bg-blue text-white mt-2 mb-2">PORTAL DE AUTOGESTIÓN - ALIADOS SERVIMERCADEO</h1>
   <jet-authentication-card>
 
     <div class="card-body">
