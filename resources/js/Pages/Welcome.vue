@@ -18,7 +18,7 @@
                     </p>
                     <br>
                     <button @click="politics = true" class="btn btn-primary btn-lg">
-                      Politicas
+                      Políticas
                     </button>
                   </div>
                 </div>
@@ -42,9 +42,9 @@
                 <div class="card h-100">
                   <img :src="$page.props.global_url+'imgs/retencion.png'" class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Retencion</h5>
+                    <h5 class="card-title">Retención</h5>
                     <p class="card-text">
-                      Conoce aquí todo lo que necesitas saber sobre tu Retencion.
+                      Conoce aquí todo lo que necesitas saber sobre tu Retención.
                     </p>
                     <br>
                     <Link href="route('retencion.aliados.index')" class="btn btn-primary btn-lg">
