@@ -25,6 +25,16 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/Aliados/Portal', function () {
+    return Inertia::render('Auth/Login', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', [Controllers\Usuarios\UsersController::class, 'redirectUser'])->name('dashboard');
 
@@ -66,10 +76,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/PQRS', fn() => Inertia::render('PQRS/index'))->name('pqrs');
         Route::get('/liquidaciones', [Controllers\Payings\PayingsController::class, 'indexLiquidaciones'])->name('liquidacion.aliados.index');
         Route::get('/retenciones', [Controllers\Payings\PayingsController::class, 'indexRetenciones'])->name('retencion.aliados.index');
-    });
-
-    Route::get('/Aliados/Portal', function () {
-        route('/');
     });
 
 });
