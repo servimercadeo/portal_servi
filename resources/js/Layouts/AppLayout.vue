@@ -24,10 +24,10 @@
                   Usuarios
               </jet-nav-link>
               <jet-nav-link :href="route('liquidacion.index')" :active="route().current('liquidacion.index')">
-                  Liquidaciónes
+                  Liquidaciones
               </jet-nav-link>
               <jet-nav-link :href="route('retencion.index')" :active="route().current('retencion.index')">
-                  Retenciónes
+                  Retenciones
               </jet-nav-link>
             </template>
             <template v-else>
