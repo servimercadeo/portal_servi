@@ -69,7 +69,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::get('/Aliados/Portal', function () {
-        route('login');
+        route('/');
     });
 
 });
