@@ -68,4 +68,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/retenciones', [Controllers\Payings\PayingsController::class, 'indexRetenciones'])->name('retencion.aliados.index');
     });
 
+    Route::get('/Aliados/Portal', function () {
+        return route('login');
+    });
+
 });
