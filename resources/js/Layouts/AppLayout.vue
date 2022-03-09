@@ -38,10 +38,10 @@
                   PQRS
               </jet-nav-link>
               <jet-nav-link :href="route('liquidacion.aliados.index')" :active="route().current('liquidacion.aliados.index')">
-                  Liquidaciónes
+                  Liquidaciones
               </jet-nav-link>
               <jet-nav-link v-if="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs')" :href="route('retencion.aliados.index')" :active="route().current('retencion.aliados.index')">
-                  Retenciónes
+                  Retenciones
               </jet-nav-link>
               <li class="nav-item">
                 <a class="nav-link" @click="logout">
