@@ -21,14 +21,14 @@ class PayingsController extends Controller
         $query = Paying::with('pais')->where('tipo', 'liquidacion');
 
         if(Auth::user()->hasRole(['admin','dtv_hugs'])){
-            $payinds = $query->orderBy('periodo')->paginate(30);
+            $payinds = $query->orderBy('id')->paginate(30);
             if(Auth::user()->hasRole('admin')){
                 return Inertia::render('Admin/Payings', compact('payinds'));
             }
         }else{
             $query = $query->where('operation', (Auth::user()->hasRole('directv'))?'directv':'hughesnet');
         }
-        $payinds = $query->where('id_pais', Auth::user()->id_pais)->orderBy('periodo')->paginate(30);
+        $payinds = $query->where('id_pais', Auth::user()->id_pais)->orderBy('id')->paginate(30);
         return Inertia::render('Payings/index', ['payinds' => $payinds,'tipo' => 'liquidación']);
     }
 
@@ -41,14 +41,14 @@ class PayingsController extends Controller
         $query = Paying::with('pais')->where('tipo', 'retencion');
 
         if(Auth::user()->hasRole(['admin','dtv_hugs'])){
-            $payinds = $query->orderBy('periodo')->paginate(30);
+            $payinds = $query->orderBy('id')->paginate(30);
             if(Auth::user()->hasRole('admin')){
                 return Inertia::render('Admin/Payings', compact('payinds'));
             }
         }else{
             $query = $query->where('operation', (Auth::user()->hasRole('directv'))?'directv':'hughesnet');
         }
-        $payinds = $query->where('id_pais', Auth::user()->id_pais)->orderBy('periodo')->paginate(30);
+        $payinds = $query->where('id_pais', Auth::user()->id_pais)->orderBy('id')->paginate(30);
         return Inertia::render('Payings/index', ['payinds' => $payinds,'tipo' => 'retención']);
     }
 
@@ -142,7 +142,7 @@ class PayingsController extends Controller
         $fill = makeFillters($filters);
         $payings = Paying::where($fill)->with('pais:id,name')
                             ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')
-                            ->where('tipo', $tipo)->orderBy('periodo')->paginate(30);
+                            ->where('tipo', $tipo)->orderBy('id')->paginate(30);
 
         return response()->json(['status' => 1 , 'payings' => $payings]);
     }
