@@ -15,8 +15,8 @@
 
       <form @submit.prevent="submit">
         <div class="mb-3">
-          <jet-label for="phone" value="Usuario" />
-          <jet-input id="phone" type="text" v-model="form.phone" required autofocus />
+          <jet-label for="nit" value="Usuario" />
+          <jet-input id="nit" type="text" v-model="form.nit" required autofocus />
         </div>
 
         <div class="mb-3">
@@ -122,7 +122,7 @@ export default defineComponent({
   data() {
     return {
       form: this.$inertia.form({
-        phone: '',
+        nit: '',
         password: '',
         remember: false,
         terms: true
