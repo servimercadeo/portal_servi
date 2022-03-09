@@ -25,7 +25,8 @@ class UsersImport implements ToModel, WithHeadingRow
             'id_pais' => ($row['pais'] == 'Colombia') ? '1' : '2' ,
             'phone' => $row['telefono'],
             'nit' => $row['nit'],
-            'razon_social' => $row['razon_social']
+            'razon_social' => $row['razon_social'],
+            'id_portal' => 1
 
         ])->assignRole($row['operacion']);
 

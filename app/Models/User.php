@@ -35,7 +35,8 @@ class User extends Authenticatable
         'phone',
         'id_pais',
         'nit',
-        'razon_social'
+        'razon_social',
+        'id_portal'
     ];
 
     /**
