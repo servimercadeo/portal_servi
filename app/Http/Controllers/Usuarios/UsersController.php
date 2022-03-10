@@ -9,8 +9,10 @@ use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use App\Imports\UsersImport;
+use App\Events\loguinEvent;
 use App\Models\User;
 use Inertia\Inertia;
+use Carbon\Carbon;
 use Auth;
 
 class UsersController extends Controller
@@ -57,6 +59,7 @@ class UsersController extends Controller
      */
 
     public function redirectUser(){
+        event(new loguinEvent(Auth::user()->id, Carbon::now()));
         if (Auth::user()->hasRole('admin')) {
             return redirect()->to('home');
         }else{
