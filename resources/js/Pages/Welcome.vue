@@ -38,7 +38,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-2">
+              <div v-show="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs')" class="col-sm-2">
                 <div class="card h-100">
                   <img :src="$page.props.global_url+'imgs/retencion.png'" class="card-img-top" alt="...">
                   <div class="card-body">
