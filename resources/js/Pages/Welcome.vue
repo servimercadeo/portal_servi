@@ -32,7 +32,7 @@
                       Conoce aquí todo lo que necesitas saber sobre tu Liquidación.
                     </p>
                     <br>
-                    <Link href="route('liquidacion.aliados.index')" class="btn btn-primary btn-lg">
+                    <Link :href="route('liquidacion.aliados.index')" class="btn btn-primary btn-lg">
                       Descargar
                     </Link> 
                   </div>
@@ -47,7 +47,7 @@
                       Conoce aquí todo lo que necesitas saber sobre tu Retención.
                     </p>
                     <br>
-                    <Link href="route('retencion.aliados.index')" class="btn btn-primary btn-lg">
+                    <Link :href="route('retencion.aliados.index')" class="btn btn-primary btn-lg">
                       Descargar
                     </Link> 
                   </div>
