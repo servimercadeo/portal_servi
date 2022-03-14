@@ -14,6 +14,11 @@
                 </div>
 
                 <div class="mt-2">
+                    <jet-label for="periodo" value="Periodo" />
+                    <jet-input id="periodo" type="text" class="mt-1 block w-full" v-model="form.periodo" required/>
+                </div>
+
+                <div class="mt-2">
                     <jet-label for="pais" value="Pais" />
                     <select class="form-select" form-select-sm name="pais" id="" v-model="form.id_pais">
                         <option :value="paying.pais.id" selected>{{paying.pais.name}}</option>
@@ -70,8 +75,6 @@
         },
         methods:{
             submit() {
-                let date = new Date()
-                this.form.periodo = this.form.operation+'-'+date.getMonth()+'-'+date.getFullYear()
                 this.$inertia.post(route('payings.update'), this.form)
             },
             /**
