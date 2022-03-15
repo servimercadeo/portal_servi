@@ -25,7 +25,8 @@ class UsersController extends Controller
      */
 
     public function index(){
-        $user = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit', 'razon_social')->with(['roles:id,name', 'pais:id,name'])->paginate(30);
+        $user = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit', 'razon_social')
+        ->with(['roles:id,name', 'pais:id,name'])->where('id_portal', 1)->paginate(30);
 
         return Inertia::render('Admin/Users', compact('user'));
     }
@@ -45,7 +46,7 @@ class UsersController extends Controller
         $fill = makeFillters($filters);
         $users = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit', 'razon_social')
         ->with('roles:id,name', 'pais:id,name')->where($fill)->whereRelation('roles','name', 'like', '%'.$fillRol.'%')
-        ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')->paginate(30);
+        ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')->where('id_portal', 1)->paginate(30);
 
         return response()->json(['status' => 1 , 'users' => $users]);
         
@@ -119,6 +120,7 @@ class UsersController extends Controller
         $user->phone = $data['phone'];
         $user->nit = $data['nit'];
         $user->razon_social = $data['razon_social'];
+        $user->id_portal = 1;
         unset($data);
         if($user->save()){
             $user->assignRole($request->input('role'));
