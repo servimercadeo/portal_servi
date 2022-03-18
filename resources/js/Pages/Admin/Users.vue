@@ -3,9 +3,11 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <table-component ref="table" :headers="['Nombre','Email','Operacíon','City','Region', 'Pais','Phone', 'NIT', 'Rol', 'Razon Social']"
+                    <table-component ref="table" 
+                        :headers="['Nombre','Email','Operacíon','City','Region', 'Pais','Phone', 'NIT', 'Rol', 'Razon Social','Ultima sesion']"
+                        :tipo_input="['text','email','text','text','text','text','text','number','number','text','date']"
                         :masive_import="true"
-                        :keys="['name','email','operation','city','region',['pais','obj','name'],'phone','nit', ['roles','name'], 'razon_social']"
+                        :keys="['name','email','operation','city','region',['pais','obj','name'],'phone','nit', ['roles','name'], 'razon_social', 'last_loguin']"
                         :info="users.data"
                         :vista="'User'" :actions="true" @crear="crearUsuario" @editar="editarUsuario"
                         @eliminar="eliminarUsuario" @importar="importeMasivoUsuarios" @filtrar="fillUsers"></table-component>

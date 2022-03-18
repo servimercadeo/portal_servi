@@ -25,7 +25,7 @@ class UsersController extends Controller
      */
 
     public function index(){
-        $user = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit', 'razon_social')
+        $user = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit', 'razon_social', 'last_loguin')
         ->with(['roles:id,name', 'pais:id,name'])->where('id_portal', 1)->paginate(30);
 
         return Inertia::render('Admin/Users', compact('user'));
@@ -44,7 +44,7 @@ class UsersController extends Controller
         unset($filters['roles']);
         unset($filters['pais']);
         $fill = makeFillters($filters);
-        $users = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit', 'razon_social')
+        $users = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit', 'razon_social','last_loguin')
         ->with('roles:id,name', 'pais:id,name')->where($fill)->whereRelation('roles','name', 'like', '%'.$fillRol.'%')
         ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')->where('id_portal', 1)->paginate(30);
 
@@ -197,7 +197,7 @@ class UsersController extends Controller
      */
     public function destroy(Request $request){
         $request->validate(['id' => 'required|exists:users,id']);
-        $user = User::find($request->input('id'));
+        $user = User::find($request->input('id'), ['id']);
         if($user->delete()){
             return response()->json(['status' => 1 ]);
         }

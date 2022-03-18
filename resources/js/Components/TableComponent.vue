@@ -16,7 +16,7 @@
                     <th v-show="actions">Acciones</th>
                 </tr>
                 <tr>
-                    <td v-for="(header, e) in headers" :key="e"><input v-model="fillters[fillSearch(e)]" @keyup.enter="filtrar" class="input-search" type="text"></td>
+                    <td v-for="(header, e) in headers" :key="e"><input v-model="fillters[fillSearch(e)]" @keyup.enter="filtrar" class="input-search" :type="tipo_input[e]"></td>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +55,9 @@ export default defineComponent({
             type: Boolean,
             required: false,
             default: false 
+        },
+        tipo_input:{
+            type: Array,
         }
     },
     data() {
