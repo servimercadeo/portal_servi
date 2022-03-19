@@ -138,7 +138,7 @@ class PayingsController extends Controller
         $filters = $request->input('filters');
         $fillPais = $filters['pais'];
         unset($filters['pais']);
-        $tipo = ($request->input('tipo') == 'liquidación')? 'liquidacion' : 'retencion';
+        $tipo = ($request->input('tipo') == 'liquidacion')? 'liquidacion' : 'retencion';
         $fill = makeFillters($filters);
         $payings = Paying::where($fill)->with('pais:id,name')
                             ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')

@@ -10,7 +10,11 @@
 
                 <div class="mt-2">
                     <jet-label for="operation" value="Operacíon" />
-                    <jet-input id="operation" type="text" class="mt-1 block w-full" v-model="form.operation" required autocomplete="new-password" />
+                    <select class="form-select" form-select-sm name="operation" id="" v-model="form.operation">
+                        <option disabled value="">Seleciona una Operacíon</option>
+                        <option value="hughesnet">Hughesnet</option>
+                        <option value="directv">Directv</option>
+                    </select>
                 </div>
 
                 <div class="mt-2">
