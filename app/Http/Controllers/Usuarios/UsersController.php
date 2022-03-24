@@ -80,7 +80,7 @@ class UsersController extends Controller
      */
 
     public function create(){
-        $roles = Role::select('id','name')->get();
+        $roles = Role::select('id','name')->where('id_portal', 1)->get();
 
         return Inertia::render('Admin/UserCreate', compact('roles'));
     }
