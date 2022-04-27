@@ -8,7 +8,7 @@
     <div class="py-12" id="welcome">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
             <div class="overflow-hidden justify-content-center shadow-xl sm:rounded-lg row">
-              <div class="col-sm-2">
+              <div class="col-sm-2" v-if="$page.props.user.id_pais == 1">
                 <div class="card h-100">
                   <img :src="$page.props.global_url+'imgs/politicas.jpg'" class="card-img-top" alt="...">
                   <div class="card-body">
