@@ -12,6 +12,8 @@
                         :vista="'User'" :actions="true" @crear="crearUsuario" @editar="editarUsuario"
                         @eliminar="eliminarUsuario" @importar="importeMasivoUsuarios" @filtrar="fillUsers"></table-component>
                 </div>
+                <br>
+                <pagination :links="users.links" />
             </div>
         </div>
     </app-layout>
@@ -21,12 +23,14 @@
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
     import TableComponent from '../../Components/TableComponent.vue'
+    import Pagination from '@/Components/Pagination'
     
 
     export default defineComponent({
         components: {
             AppLayout,
             TableComponent,
+            Pagination
         },
         props: {
             user: Object,
@@ -58,7 +62,7 @@
             }
         },
         mounted(){
-            // console.log(this.user)
+            console.log(this.user)
         }
     })
 </script>
