@@ -147,7 +147,7 @@
     </modal>
     <modal id="modal_welcome" :show="modal_w">
       <div class="modal-body bg-light">
-        <img :src="$page.props.global_url+'imgs/welcome.png'" alt="" class="img-fluid">
+        <img :src="$page.props.global_url+(($page.props.user.id_pais == 1)?'imgs/aviso.png':'imgs/welcome.png')" alt="" class="img-fluid">
       </div>
       <div class="modal-footer bg-light">
         <button type="button" class="btn btn-primary mx-auto" data-bs-dismiss="modal" aria-label="Close">OK</button>
