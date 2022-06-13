@@ -145,7 +145,7 @@
         </div>
       </div>
     </modal>
-    <modal id="modal_welcome" :show="modal_w">
+    <modal id="modal_welcome" :show="true">
       <div class="modal-body bg-light">
         <img :src="$page.props.global_url+(($page.props.user.id_pais == 1)?'imgs/aviso.png':'imgs/welcome.png')" alt="" class="img-fluid">
       </div>
