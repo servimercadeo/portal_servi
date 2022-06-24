@@ -146,11 +146,16 @@
       </div>
     </modal>
     <modal id="modal_welcome" :show="true">
-      <div class="modal-body bg-light">
-        <img :src="$page.props.global_url+(($page.props.user.id_pais == 1)?'imgs/aviso.png':'imgs/welcome.png')" alt="" class="img-fluid">
-      </div>
-      <div class="modal-footer bg-light">
-        <button type="button" class="btn btn-primary mx-auto" data-bs-dismiss="modal" aria-label="Close">OK</button>
+      <div class="modal-content">
+        <div class="modal-body bg-light">
+          <img v-if="!nextimg" :src="$page.props.global_url+(($page.props.user.id_pais == 1)?'imgs/comunicado_2.jpg':'imgs/welcome.png')" alt="" class="img-fluid">
+          <img v-else :src="$page.props.global_url+'imgs/comunicado_1.png'" alt="" class="img-fluid">
+        </div>
+        <div class="modal-footer bg-light">
+            <button v-show="!nextimg"  type="button" class="btn btn-primary mx-auto" data-bs-dismiss="modal" aria-label="Close">OK</button>
+            <button v-show="nextimg" type="button" class="btn btn-success mx-auto" @click="nextimg = !nextimg">Siguiente</button>
+            <a v-show="nextimg" type="button" class="btn btn-primary mx-auto" href="https://drive.google.com/file/d/1q-0vCOTbFC8zCIn5VIDZ8Ugejaho8nPh/view?usp=sharing" target="_blank">Ver Documento</a>
+        </div>
       </div>
     </modal>
   </app-layout>
@@ -221,6 +226,7 @@ export default defineComponent({
         }
       },
       selecct_item:{},
+      nextimg: this.$page.props.user.id_pais == 1
     }
   },
   computed:{
