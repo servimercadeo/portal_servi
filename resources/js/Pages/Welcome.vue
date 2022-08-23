@@ -148,7 +148,7 @@
     <modal id="modal_welcome" :show="true">
       <div class="modal-content">
         <div class="modal-body bg-light">
-          <img v-if="!nextimg" :src="$page.props.global_url+(($page.props.user.id_pais == 1)?'aviso.png.jpg':'imgs/aviso.png.png')" alt="" class="img-fluid">
+          <img v-if="!nextimg" :src="$page.props.global_url+(($page.props.user.id_pais == 1)?'aviso.png.jpg':'imgs/aviso.png')" alt="" class="img-fluid">
           <img v-else :src="$page.props.global_url+'imgs/comunicado_1.png'" alt="" class="img-fluid">
         </div>
         <div class="modal-footer bg-light">
