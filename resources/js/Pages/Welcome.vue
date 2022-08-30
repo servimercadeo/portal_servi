@@ -38,6 +38,21 @@
                   </div>
                 </div>
               </div>
+              <!-- <div class="col-sm-2">
+                <div class="card h-100">
+                  <img :src="$page.props.global_url+'imgs/aviso.png'" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Comunicados</h5>
+                    <p class="card-text">
+                      Aca podras ver los Comunicados
+                    </p>
+                    <br>
+                    <button :href="route('liquidacion.aliados.index')" class="btn btn-primary btn-lg" @click="vercom = true">
+                      Ver
+                    </button> 
+                  </div>
+                </div>
+              </div> -->
               <div v-show="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs')" class="col-sm-2">
                 <div class="card h-100">
                   <img :src="$page.props.global_url+'imgs/retencion.png'" class="card-img-top" alt="...">
@@ -145,16 +160,15 @@
         </div>
       </div>
     </modal>
-    <modal id="modal_welcome" :show="true">
+    <modal id="modal_welcome" :show="vercom">
       <div class="modal-content">
         <div class="modal-body bg-light">
-          <img v-if="!nextimg" :src="$page.props.global_url+(($page.props.user.id_pais == 1)?'imgs/aviso.png':'imgs/aviso.png')" alt="" class="img-fluid">
-          <img v-else :src="$page.props.global_url+'imgs/comunicado_1.png'" alt="" class="img-fluid">
+          <img :src="$page.props.global_url+'imgs/aviso30082022.png'" alt="" class="img-fluid">
         </div>
         <div class="modal-footer bg-light">
-            <button v-show="!nextimg"  type="button" class="btn btn-primary mx-auto" data-bs-dismiss="modal" aria-label="Close">OK</button>
-            <button v-show="nextimg" type="button" class="btn btn-success mx-auto" @click="nextimg = !nextimg">Siguiente</button>
-            <a v-show="nextimg" type="button" class="btn btn-primary mx-auto" href="https://drive.google.com/file/d/1q-0vCOTbFC8zCIn5VIDZ8Ugejaho8nPh/view?usp=sharing" target="_blank">Ver Documento</a>
+            <button type="button" class="btn btn-primary mx-auto" data-bs-dismiss="modal" aria-label="Close" @click="vercom = false">OK</button>
+            <a  type="button" class="btn btn-primary mx-auto" href="https://docs.google.com/document/d/1129l-ncEe-BuoKbXWJYsZbQSziXUE5A3/edit?usp=sharing&ouid=104120874220981767875&rtpof=true&sd=true" target="_blank">Certificado de Utilidad</a>
+            <a  type="button" class="btn btn-primary mx-auto" href="https://drive.google.com/file/d/1TJIR-wgHwi9gT4HDNVznBa2lm017ISFE/view?usp=sharing" target="_blank">Comunicado de normatividad</a>
         </div>
       </div>
     </modal>
@@ -166,12 +180,14 @@ import { defineComponent } from "vue"
 import AppLayout from "@/Layouts/AppLayout.vue"
 import { Link } from '@inertiajs/inertia-vue3'
 import Modal from '../Jetstream/Modal.vue'
+import Button from "../Jetstream/Button.vue";
 
 export default defineComponent({
   components: {
     AppLayout,
     Link,
     Modal,
+    Button,
   },
   data() {
     return {
@@ -226,7 +242,8 @@ export default defineComponent({
         }
       },
       selecct_item:{},
-      nextimg: this.$page.props.user.id_pais == 1
+      nextimg: this.$page.props.user.id_pais == 1,
+      vercom: true
     }
   },
   computed:{
