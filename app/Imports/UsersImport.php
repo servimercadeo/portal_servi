@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -15,20 +16,29 @@ class UsersImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        $user = User::create([
-            'name' => $row['nombre'],
+        $sup = 1;
+        if(User::where('name', 'like', $row['lider'].'%')->exists()){
+            $sup = User::where('name', 'like', $row['lider'].'%')->first()->id;
+        }
+
+
+        $user = User::updateOrCreate(
+            ['nit' => $row['nit']],
+            [
+            'name' => $row['nombre'].' '.$row['apellidos'],
             'email' => $row['correo'],
             'password' => bcrypt($row['nit']),
             'operation' => $row['operacion'],
             'city' => $row['ciudad'],
-            'region' => $row['region'],
-            'id_pais' => ($row['pais'] == 'Colombia') ? '1' : '2' ,
+            'id_pais' => $row['pais'],
             'phone' => $row['telefono'],
             'nit' => $row['nit'],
-            'razon_social' => $row['razon_social'],
-            'id_portal' => 1
-
-        ])->assignRole($row['operacion']);
+            'id_portal' => 5,
+            'fecha_ingreso' => Carbon::parse($row['fecha_ingreso'])->format('y-m-d'),
+            'empleador' => $row['empleador'],
+            'proceso' => $row['proceso'],
+            'id_supervisor' => $sup,
+        ])->assignRole($row['rol']);
 
         return $user;
     }

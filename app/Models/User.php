@@ -36,7 +36,11 @@ class User extends Authenticatable
         'id_pais',
         'nit',
         'razon_social',
-        'id_portal'
+        'id_portal',
+        'fecha_ingreso',
+        'empleador',
+        'proceso',
+        'id_supervisor',
     ];
 
     /**
