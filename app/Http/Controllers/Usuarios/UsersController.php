@@ -60,16 +60,13 @@ class UsersController extends Controller
      */
 
     public function redirectUser(){
-        if(Auth::user()->id_portal == 1 || Auth::user()->hasRole('admin')){
-            event(new loguinEvent(Auth::user()->id, Carbon::now()));
-            if (Auth::user()->hasRole('admin')) {
-                return redirect()->to('home');
-            }else{
-                return redirect()->to('aliados');
-            }
+        
+        event(new loguinEvent(Auth::user()->id, Carbon::now()));
+        if (Auth::user()->hasRole('admin')) {
+            return redirect()->to('home');
+        }else{
+            return redirect()->to('aliados');
         }
-        auth('web')->logout();
-        return redirect()->to('/');
     }
 
     /**

@@ -41,6 +41,8 @@ class User extends Authenticatable
         'empleador',
         'proceso',
         'id_supervisor',
+        'id_compania',
+        'codigo_pvd'
     ];
 
     /**
