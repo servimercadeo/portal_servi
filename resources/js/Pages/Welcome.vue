@@ -163,12 +163,10 @@
     <modal id="modal_welcome" :show="vercom">
       <div class="modal-content">
         <div class="modal-body bg-light">
-          <img :src="$page.props.global_url+'imgs/aviso30082022.png'" alt="" class="img-fluid">
+          <img :src="$page.props.global_url+'imgs/navidad.png'" alt="" class="img-fluid">
         </div>
         <div class="modal-footer bg-light">
             <button type="button" class="btn btn-primary mx-auto" data-bs-dismiss="modal" aria-label="Close" @click="vercom = false">OK</button>
-            <a  type="button" class="btn btn-primary mx-auto" href="https://docs.google.com/document/d/1129l-ncEe-BuoKbXWJYsZbQSziXUE5A3/edit?usp=sharing&ouid=104120874220981767875&rtpof=true&sd=true" target="_blank">Certificado de Utilidad</a>
-            <a  type="button" class="btn btn-primary mx-auto" href="https://drive.google.com/file/d/1TJIR-wgHwi9gT4HDNVznBa2lm017ISFE/view?usp=sharing" target="_blank">Comunicado de normatividad</a>
         </div>
       </div>
     </modal>
