@@ -11,7 +11,7 @@ class Paying extends Model
 
     protected $table = 'payings2';
 
-    protected $fillable = ['_link','operation', 'tipo', 'id_pais', 'periodo'];
+    protected $fillable = ['_link','operation', 'tipo', 'id_pais', 'periodo', 'file_name'];
 
     public function pais(){
         return $this->belongsTo('App\Models\Pais','id_pais','id');

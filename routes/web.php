@@ -57,25 +57,32 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::prefix('payings')->group(function (){
                 Route::get('/liquidaciones', [Controllers\Payings\PayingsController::class, 'indexLiquidaciones'])->name('liquidacion.index');
                 Route::get('/retenciones', [Controllers\Payings\PayingsController::class, 'indexRetenciones'])->name('retencion.index');
+                Route::get('/churn', [Controllers\Payings\PayingsController::class, 'indexChurn'])->name('churn.index');
                 Route::get('/createL', [Controllers\Payings\PayingsController::class, 'create'])->name('liquidacion.create');
                 Route::get('/create', [Controllers\Payings\PayingsController::class, 'create'])->name('retencion.create');
+                Route::get('/createchurn', [Controllers\Payings\PayingsController::class, 'createChurn'])->name('churn.create');
 
                 Route::post('/insert', [Controllers\Payings\PayingsController::class, 'insert'])->name('payings.insert');
+                Route::post('/insertchurn', [Controllers\Payings\PayingsController::class, 'insertChurn'])->name('churn.insert');
                 Route::get('/edit', [Controllers\Payings\PayingsController::class, 'edit'])->name('payings.edit');
+                Route::get('/editchurn', [Controllers\Payings\PayingsController::class, 'editChurn'])->name('churn.edit');
                 Route::post('/update', [Controllers\Payings\PayingsController::class, 'update'])->name('payings.update');
+                Route::post('/updatechurn', [Controllers\Payings\PayingsController::class, 'updateChurn'])->name('churn.update');
                 Route::post('/destroy', [Controllers\Payings\PayingsController::class, 'destroy'])->name('payings.destroy');
                 Route::post('/fillter', [Controllers\Payings\PayingsController::class, 'fillter'])->name('payings.fill');
             });
             Route::get('permisos', [Controllers\Seguridad\PermisosController::class, 'index'])->name('permisos.index');
         });
     });
-    
+
 
     Route::get('/aliados', [Controllers\Aliados\AliadosController::class, 'index'])->name('aliados');
     Route::prefix('aliados')->group(function() {
         Route::get('/PQRS', fn() => Inertia::render('PQRS/index'))->name('pqrs');
         Route::get('/liquidaciones', [Controllers\Payings\PayingsController::class, 'indexLiquidaciones'])->name('liquidacion.aliados.index');
         Route::get('/retenciones', [Controllers\Payings\PayingsController::class, 'indexRetenciones'])->name('retencion.aliados.index');
+        Route::get('/churn', [Controllers\Payings\PayingsController::class, 'indexChurn'])->name('churn.aliados.index');
     });
+    Route::get('files_churn/{file_name}', [Controllers\Payings\PayingsController::class, 'descargar']);
 
 });

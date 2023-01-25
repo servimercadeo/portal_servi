@@ -29,6 +29,9 @@
               <jet-nav-link :href="route('retencion.index')" :active="route().current('retencion.index')">
                   Retenciones
               </jet-nav-link>
+              <jet-nav-link :href="route('churn.index')" :active="route().current('churn.index')">
+                Cartera-Churn
+              </jet-nav-link>
             </template>
             <template v-else>
               <jet-nav-link :href="route('dashboard')" :active="route().current('aliados')">
@@ -42,6 +45,9 @@
               </jet-nav-link>
               <jet-nav-link v-if="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs')" :href="route('retencion.aliados.index')" :active="route().current('retencion.aliados.index')">
                   Retenciones
+              </jet-nav-link>
+              <jet-nav-link :href="route('churn.aliados.index')" :active="route().current('churn.aliados.index')">
+                Cartera-Churn
               </jet-nav-link>
               <li class="nav-item">
                 <a class="nav-link" @click="logout">

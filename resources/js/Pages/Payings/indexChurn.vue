@@ -11,7 +11,7 @@
                         <div class="col-md-6 mx-auto mt-3 h-100 section-central pt-2 pb-2 text-center">
                             <img :src="$page.props.global_url+((operation)?'imgs/directtv.svg':'imgs/hnn.png')"
                             class="mx-auto d-block" alt="">
-                            <p class="fs-4 mt-2">{{tipo}}</p>
+                            <p class="fs-4 mt-2">Cartera-Churn</p>
                             <table class="table rounded f-o text-muted">
                                 <thead>
                                     <tr>
@@ -43,6 +43,7 @@
 <script>
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
+
 
     export default defineComponent({
         components: {
