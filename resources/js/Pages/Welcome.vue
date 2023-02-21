@@ -34,7 +34,7 @@
                     <br>
                     <Link :href="route('liquidacion.aliados.index')" class="btn btn-primary btn-lg">
                       Descargar
-                    </Link> 
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@
                     <br>
                     <button :href="route('liquidacion.aliados.index')" class="btn btn-primary btn-lg" @click="vercom = true">
                       Ver
-                    </button> 
+                    </button>
                   </div>
                 </div>
               </div> -->
@@ -64,7 +64,7 @@
                     <br>
                     <Link :href="route('retencion.aliados.index')" class="btn btn-primary btn-lg">
                       Descargar
-                    </Link> 
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -89,14 +89,20 @@
                   <div class="card-body">
                     <h5 class="card-title">Formato de Cuenta de Cobro</h5>
                     <p class="card-text">
-                      ¿No tienes el Formato de Cuenta de Cobro? ¡Descargalo ya!
+                      ¿No tienes el Nuevo Formato de Cuenta de Cobro? ¡Descargalo ya!
                     </p>
                     <br>
-                    <a v-show="$page.props.role.includes('directv') || $page.props.role.includes('dtv_hugs')" target="_blank" href="https://servimercadeo.bitrix24.es/bitrix/services/main/ajax.php?action=disk.api.file.download&SITE_ID=s1&humanRE=1&fileId=1151199&fileName=MODELO+CUENTA+DE+COBRO+SERVIMERCADEO.docx" class="btn btn-primary btn-lg">
+                    <!--<a v-show="$page.props.role.includes('directv') || $page.props.role.includes('dtv_hugs')" target="_blank" href="https://servimercadeo.bitrix24.es/bitrix/services/main/ajax.php?action=disk.api.file.download&SITE_ID=s1&humanRE=1&fileId=1151199&fileName=MODELO+CUENTA+DE+COBRO+SERVIMERCADEO.docx" class="btn btn-primary btn-lg">
                       {{'Descargar '+($page.props.role.includes('dtv_hugs')?'Directv':'')}}
                     </a>
                     <a v-show="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs') " target="_blank" href="https://bitrix24public.com/servimercadeo.bitrix24.es/docs/pub/9295b171f54db9c24a1becde26d1451e/download/?&token=1l22ti3awlpf" class="btn btn-primary btn-lg" :class="($page.props.role.includes('dtv_hugs'))?'mt-2':''">
                       {{'Descargar '+($page.props.role.includes('dtv_hugs')?'Hughesnet':'')}}
+                    </a>-->
+                    <a href="https://servimercadeo.bitrix24.es/disk/downloadFile/1826359/?&ncc=1&filename=NUEVO+FORMATO+CUENTA+DE+COBRO++S%26M+SERVICIOS+Y+MERCADEO+SAS%281%29.docx" target="_blank" class="btn btn-primary btn-lg">
+                        <i class="icon-download"></i>Formato S&M
+                    </a>
+                    <a href="https://servimercadeo.bitrix24.es/disk/downloadFile/1826357/?&ncc=1&filename=NUEVO+FORMATO+CUENTA+DE+COBRO++SERVIMERCADEO+%281%29.docx" target="_blank" class="btn btn-primary btn-lg mt-2">
+                        <i class="icon-download"></i>Formato Servimercadeo
                     </a>
                   </div>
                 </div>
@@ -163,10 +169,16 @@
     <modal id="modal_welcome" :show="vercom">
       <div class="modal-content">
         <div class="modal-body bg-light">
-          <img :src="$page.props.global_url+'imgs/navidad.png'" alt="" class="img-fluid">
+          <img :src="$page.props.global_url+'imgs/avisoJader.png'" alt="" class="img-fluid">
         </div>
-        <div class="modal-footer bg-light">
-            <button type="button" class="btn btn-primary mx-auto" data-bs-dismiss="modal" aria-label="Close" @click="vercom = false">OK</button>
+        <div class="modal-footer bg-light justify-items-start">
+            <a href="https://servimercadeo.bitrix24.es/disk/downloadFile/1826359/?&ncc=1&filename=NUEVO+FORMATO+CUENTA+DE+COBRO++S%26M+SERVICIOS+Y+MERCADEO+SAS%281%29.docx" target="_blank" class="btn btn-primary">
+                <i class="icon-download"></i>Formato S&M
+            </a>
+            <a href="https://servimercadeo.bitrix24.es/disk/downloadFile/1826357/?&ncc=1&filename=NUEVO+FORMATO+CUENTA+DE+COBRO++SERVIMERCADEO+%281%29.docx" target="_blank" class="btn btn-primary">
+                <i class="icon-download"></i>Formato Servimercadeo
+            </a>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" @click="vercom = false">OK</button>
         </div>
       </div>
     </modal>
@@ -323,7 +335,7 @@ export default defineComponent({
         height: 100%;
         bottom: 0px;
         max-width: 400px;
-        
+
         .modal-content{
           border-radius: 0px;
           height: 100%;
