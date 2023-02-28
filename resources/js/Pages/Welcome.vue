@@ -98,10 +98,10 @@
                     <a v-show="$page.props.role.includes('hughesnet') || $page.props.role.includes('dtv_hugs') " target="_blank" href="https://bitrix24public.com/servimercadeo.bitrix24.es/docs/pub/9295b171f54db9c24a1becde26d1451e/download/?&token=1l22ti3awlpf" class="btn btn-primary btn-lg" :class="($page.props.role.includes('dtv_hugs'))?'mt-2':''">
                       {{'Descargar '+($page.props.role.includes('dtv_hugs')?'Hughesnet':'')}}
                     </a>-->
-                    <a href="https://servimercadeo.bitrix24.es/disk/downloadFile/1826359/?&ncc=1&filename=NUEVO+FORMATO+CUENTA+DE+COBRO++S%26M+SERVICIOS+Y+MERCADEO+SAS%281%29.docx" target="_blank" class="btn btn-primary btn-lg">
+                    <a href="https://bitrix24public.com/servimercadeo.bitrix24.es/docs/pub/212ede1fd71ccd9d516b9c332acbb8ca/download/?&token=gk3086im0701" target="_blank" class="btn btn-primary btn-lg">
                         <i class="icon-download"></i>Formato S&M
                     </a>
-                    <a href="https://servimercadeo.bitrix24.es/disk/downloadFile/1826357/?&ncc=1&filename=NUEVO+FORMATO+CUENTA+DE+COBRO++SERVIMERCADEO+%281%29.docx" target="_blank" class="btn btn-primary btn-lg mt-2">
+                    <a href="https://bitrix24public.com/servimercadeo.bitrix24.es/docs/pub/49aa888544d2a0f0af9f3eaf17f57d2f/download/?&token=zw13c424ms3w" target="_blank" class="btn btn-primary btn-lg mt-2">
                         <i class="icon-download"></i>Formato Servimercadeo
                     </a>
                   </div>
