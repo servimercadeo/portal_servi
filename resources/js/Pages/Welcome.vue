@@ -172,10 +172,10 @@
           <img :src="$page.props.global_url+'imgs/avisoJader.png'" alt="" class="img-fluid">
         </div>
         <div class="modal-footer bg-light justify-items-start">
-            <a href="https://servimercadeo.bitrix24.es/disk/downloadFile/1826359/?&ncc=1&filename=NUEVO+FORMATO+CUENTA+DE+COBRO++S%26M+SERVICIOS+Y+MERCADEO+SAS%281%29.docx" target="_blank" class="btn btn-primary">
+            <a href="https://bitrix24public.com/servimercadeo.bitrix24.es/docs/pub/212ede1fd71ccd9d516b9c332acbb8ca/download/?&token=gk3086im0701" target="_blank" class="btn btn-primary">
                 <i class="icon-download"></i>Formato S&M
             </a>
-            <a href="https://servimercadeo.bitrix24.es/disk/downloadFile/1826357/?&ncc=1&filename=NUEVO+FORMATO+CUENTA+DE+COBRO++SERVIMERCADEO+%281%29.docx" target="_blank" class="btn btn-primary">
+            <a href="https://bitrix24public.com/servimercadeo.bitrix24.es/docs/pub/49aa888544d2a0f0af9f3eaf17f57d2f/download/?&token=zw13c424ms3w" target="_blank" class="btn btn-primary">
                 <i class="icon-download"></i>Formato Servimercadeo
             </a>
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" @click="vercom = false">OK</button>
