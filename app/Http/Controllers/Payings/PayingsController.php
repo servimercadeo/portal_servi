@@ -186,14 +186,14 @@ class PayingsController extends Controller
             'operation' => 'required',
             'tipo' => 'required',
             'id_pais' => 'required',
-            'file_name' => 'required'
         ]);
-
-        $file_name = $request->input('file_name');
         $link = $request->input('_link');
 
         if($request->file('doc') != null){
-            unlink(storage_path().'/app/files_churn/'.$file_name);
+            if( $request->input('file_name') != ''){
+                $file_name = $request->input('file_name');
+                unlink(storage_path().'/app/files_churn/'.$file_name);
+            }
             $file = $request->file('doc');
             $file_name = $request->input('operation').'_'.$request->input('periodo').'_'.(($request->input('id_pais') == 1)?'COL': 'ECU').'.'.$file->getClientOriginalExtension();
             $path = storage_path().'/app/files_'.$request->input('tipo').'/'.$file_name;
