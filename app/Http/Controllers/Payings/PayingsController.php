@@ -93,15 +93,33 @@ class PayingsController extends Controller
      */
     public function insert(Request $request){
         $request->validate([
-            '_link' => 'required',
+            'doc' => 'required',
             'operation' => 'required',
             'tipo' => 'required',
             'id_pais' => 'required'
         ]);
 
-        if(Paying::create($request->all())){
-            return Redirect::route($request->input('tipo').'.index');
+        $file = $request->file('doc');
+        $file_name = $request->input('operation').'_'.$request->input('periodo').'_'.(($request->input('id_pais') == 1)?'COL': 'ECU').'.'.$file->getClientOriginalExtension();
+        $path = storage_path().'/app/files_'.$request->input('tipo').'/'.$file_name;
+
+        if(file_exists($path)){
+            return redirect()->route('churn.create')->withErrors('Ya existe un archivo con ese periodo, pon otro periodo')->withInput();
         }
+
+        $link = config('app.global_url').$file->storeAs('files_'.$request->input('tipo'), $file_name);
+
+        Paying::create([
+            'operation' => $request->input('operation'),
+            'tipo' => $request->input('tipo'),
+            'id_pais' => $request->input('id_pais'),
+            'periodo' => $request->input('periodo'),
+            '_link' => $link,
+            'file_name' => $file_name
+         ]);
+
+
+        return Redirect::route($request->input('tipo').'.index');
     }
 
     /**
@@ -167,15 +185,32 @@ class PayingsController extends Controller
             '_link' => 'required',
             'operation' => 'required',
             'tipo' => 'required',
-            'id_pais' => 'required'
+            'id_pais' => 'required',
+            'file_name' => 'required'
         ]);
 
+        $file_name = $request->input('file_name');
+        $link = $request->input('_link');
+
+        if($request->file('doc') != null){
+            unlink(storage_path().'/app/files_churn/'.$file_name);
+            $file = $request->file('doc');
+            $file_name = $request->input('operation').'_'.$request->input('periodo').'_'.(($request->input('id_pais') == 1)?'COL': 'ECU').'.'.$file->getClientOriginalExtension();
+            $path = storage_path().'/app/files_'.$request->input('tipo').'/'.$file_name;
+
+            if(file_exists($path)){
+                unlink(storage_path().'/app/files_churn/'.$file_name);
+            }
+            $link = config('app.global_url').$file->storeAs('files_churn', $file_name);
+        }
+
         $paying = Paying::find($request->input('id'));
-        $paying->_link = $request->input('_link');
+        $paying->_link = $link;
         $paying->operation = $request->input('operation');
         $paying->tipo = $request->input('tipo');
         $paying->periodo = $request->input('periodo');
         $paying->id_pais = $request->input('id_pais');
+        $paying->file_name = $file_name;
 
         if($paying->save()){
             return Redirect::route($request->input('tipo').'.index');
@@ -208,8 +243,6 @@ class PayingsController extends Controller
         }
 
         $paying = Paying::find($request->input('id'));
-
-        $paying = Paying::find($request->input('id'));
         $paying->_link = $link;
         $paying->operation = $request->input('operation');
         $paying->tipo = $request->input('tipo');
@@ -233,7 +266,7 @@ class PayingsController extends Controller
         $paying = Paying::find($request->input('id'));
 
         if($paying->file_name != null){
-            unlink(storage_path().'/app/files_churn/'.$paying->file_name);
+            unlink(storage_path().'/app/files_'.$request->input('tipo').'/'.$paying->file_name);
         }
         if($paying->delete()){
             return response()->json(['status' => 1 ]);

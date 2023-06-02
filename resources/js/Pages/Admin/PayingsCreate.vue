@@ -4,8 +4,9 @@
             <jet-validation-errors class="mb-4" />
             <form @submit.prevent="submit" class="row">
                 <div class="mt-2">
-                    <jet-label for="_link" value="Link" />
-                    <textarea name="_link" id="link" class="form-control" cols="10" rows="10" v-model="form._link"></textarea>
+                    <jet-label for="doc" value="Documento" />
+                    <br>
+                    <input type="file" name="doc" @change="upFile"/>
                 </div>
 
                 <div class="mt-2">
@@ -37,7 +38,7 @@
                     </jet-button>
                 </div>
             </form>
-        </jet-authentication-card>              
+        </jet-authentication-card>
     </app-layout>
 </template>
 <script>
@@ -48,7 +49,7 @@
     import JetInput from '@/Jetstream/Input.vue'
     import JetLabel from '@/Jetstream/Label.vue'
     import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
-    
+
 
     export default defineComponent({
         components: {
@@ -62,7 +63,7 @@
         data() {
             return {
                 form: this.$inertia.form({
-                    _link: '',
+                    doc: null,
                     operation: '',
                     tipo: (this.route().current('liquidacion.create'))?'liquidacion':'retencion',
                     periodo: '',
@@ -73,6 +74,9 @@
         methods:{
             submit() {
                 this.$inertia.post(route('payings.insert'), this.form )
+            },
+            upFile(event){
+                this.form.doc = event.target.files[0]
             }
         },
     })

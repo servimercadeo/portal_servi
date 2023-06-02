@@ -4,8 +4,14 @@
             <jet-validation-errors class="mb-4" />
             <form @submit.prevent="submit" class="row">
                 <div class="mt-2">
-                    <jet-label for="_link" value="Link" />
-                    <textarea name="_link" id="link" class="form-control" cols="10" rows="10" v-model="form._link"></textarea>
+                    <jet-label for="doc" value="Documento" />
+                    <a :href="paying._link" target="_blank" class="btn btn-primary btn-md">
+                        <i class="icon-download"></i>
+                    </a>
+                    <br>
+                    <small>solo sube ub archivo si deseas cambiarlo*</small>
+                    <br>
+                    <input type="file" name="doc" @change="upFile"/>
                 </div>
 
                 <div class="mt-2">
@@ -14,7 +20,7 @@
                         <option disabled value="">Seleciona una Operacíon</option>
                         <option value="hughesnet">Hughesnet</option>
                         <option value="directv">Directv</option>
-                    </select>                
+                    </select>
                 </div>
 
                 <div class="mt-2">
@@ -37,7 +43,7 @@
                     </jet-button>
                 </div>
             </form>
-        </jet-authentication-card>              
+        </jet-authentication-card>
     </app-layout>
 </template>
 <script>
@@ -49,7 +55,7 @@
     import JetCheckbox from '@/Jetstream/Checkbox.vue'
     import JetLabel from '@/Jetstream/Label.vue'
     import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
-    
+
 
     export default defineComponent({
         components: {
@@ -67,12 +73,14 @@
         data() {
             return {
                 form: this.$inertia.form({
-                    id: '',
+                    doc: null,
                     _link: '',
+                    id: '',
                     operation: '',
                     tipo: '',
                     periodo: '',
-                    id_pais: ''
+                    id_pais: '',
+                    file_name: '',
                 }),
                 fillPaises: {}
             }
@@ -83,18 +91,18 @@
             },
             /**
              * funcion para filtar el formulario y que quede con los datos que llegan
-             * 
-             * @author Santiago Giraldo 
+             *
+             * @author Santiago Giraldo
              * @returns Void
              */
-            assignForm(){
+             assignForm(){
                 Object.assign(this.form,this.paying)
                 let x = this.paying.pais.id
                 this.form.id_pais = x
                 this.fillPaises = this.$page.props.paises.filter(function(pais){
                     return pais.id != x
                 })
-            }
+            },
         },
         mounted() {
             console.log(this.paying)
