@@ -299,4 +299,32 @@ class PayingsController extends Controller
             return response()->download($path);
         }
      }
+
+     /**
+     * Funcion para descargar un documento
+     *
+     * @author Santiago Giraldo Pulgarín
+     * @return File
+     */
+
+     public function descargarL($file_name = null){
+        $path = storage_path().'/app/files_liquidacion/'.$file_name;
+        if(file_exists($path)){
+            return response()->download($path);
+        }
+     }
+
+     /**
+     * Funcion para descargar un documento
+     *
+     * @author Santiago Giraldo Pulgarín
+     * @return File
+     */
+
+     public function descargarR($file_name = null){
+        $path = storage_path().'/app/files_retencion/'.$file_name;
+        if(file_exists($path)){
+            return response()->download($path);
+        }
+     }
 }

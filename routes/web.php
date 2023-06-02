@@ -84,5 +84,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/churn', [Controllers\Payings\PayingsController::class, 'indexChurn'])->name('churn.aliados.index');
     });
     Route::get('files_churn/{file_name}', [Controllers\Payings\PayingsController::class, 'descargar']);
+    Route::get('files_liquidacion/{file_name}', [Controllers\Payings\PayingsController::class, 'descargarL']);
+    Route::get('files_retencion/{file_name}', [Controllers\Payings\PayingsController::class, 'descargarR']);
 
 });

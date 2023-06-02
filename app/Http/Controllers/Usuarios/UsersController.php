@@ -19,21 +19,21 @@ class UsersController extends Controller
 {
     /**
      * Funcion para listar los usuarios del sistema
-     * 
+     *
      * @author Santiago Giraldo Pulgarín
      * @return View
      */
 
     public function index(){
         $user = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit', 'razon_social', 'last_loguin')
-        ->with(['roles:id,name', 'pais:id,name'])->where('id_portal', 1)->paginate(30);
+        ->with(['roles:id,name', 'pais:id,name'])->whereIn('id_portal', [1,4,7,8])->paginate(30);
 
         return Inertia::render('Admin/Users', compact('user'));
     }
 
     /**
-     * Funcion para ontener los usuarios segun un filtro 
-     * 
+     * Funcion para ontener los usuarios segun un filtro
+     *
      * @author Santiago Giraldo Pulgarín
      * @return JSON
      */
@@ -46,21 +46,21 @@ class UsersController extends Controller
         $fill = makeFillters($filters);
         $users = User::select('id','name','operation','email','city','region', 'id_pais','phone', 'nit', 'razon_social','last_loguin')
         ->with('roles:id,name', 'pais:id,name')->where($fill)->whereRelation('roles','name', 'like', '%'.$fillRol.'%')
-        ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')->where('id_portal', 1)->paginate(30);
+        ->whereRelation('pais','name', 'like', '%'.$fillPais.'%')->whereIn('id_portal', [1,4,7,8])->paginate(30);
 
         return response()->json(['status' => 1 , 'users' => $users]);
-        
+
     }
 
     /**
-     * Funcion para redireccíonar el usuario segun su rol 
-     * 
+     * Funcion para redireccíonar el usuario segun su rol
+     *
      * @author Santiago Giraldo Pularín
      * @return Void
      */
 
     public function redirectUser(){
-        
+
         event(new loguinEvent(Auth::user()->id, Carbon::now()));
         if (Auth::user()->hasRole('admin')) {
             return redirect()->to('home');
@@ -71,7 +71,7 @@ class UsersController extends Controller
 
     /**
      * Funcion para redireccionar a la vista de creacíon de usuario
-     * 
+     *
      * @author Santiago Giraldo Pulgarín
      * @return View
      */
@@ -84,7 +84,7 @@ class UsersController extends Controller
 
     /**
      * Funcion para crear un usuario
-     * 
+     *
      * @author Santiago Giraldo Pulgarín
      * @return View
      */
@@ -127,7 +127,7 @@ class UsersController extends Controller
 
     /**
      * Funcion para redireccionar a la vista de creacíon de usuario
-     * 
+     *
      * @author Santiago Giraldo Pulgarín
      * @return View
      */
@@ -140,7 +140,7 @@ class UsersController extends Controller
 
     /**
      * Funcion para editar un usuario
-     * 
+     *
      * @author Santiago Giraldo Pulgarín
      * @return View
      */
@@ -161,7 +161,7 @@ class UsersController extends Controller
             'role' => 'required'
         ]);
 
-        
+
         $user = User::find($data['id']);
         $user->name = $data['name'];
         $user->email = $data['email'];
@@ -188,7 +188,7 @@ class UsersController extends Controller
 
     /**
      * Funcion para eliminar un usuario
-     * 
+     *
      * @author Santiago Giraldo Pulgarín
      * @return View
      */
@@ -199,11 +199,11 @@ class UsersController extends Controller
             return response()->json(['status' => 1 ]);
         }
     }
-    
+
     /**
      * Funcion para el importe masivo de usuarios
-     * 
-     * @author Santiago Giraldo Pulgarín 
+     *
+     * @author Santiago Giraldo Pulgarín
      * @return View
      */
 
