@@ -169,15 +169,9 @@
     <modal id="modal_welcome" :show="vercom">
       <div class="modal-content">
         <div class="modal-body bg-light">
-          <img :src="$page.props.global_url+'imgs/avisoJader.png'" alt="" class="img-fluid">
+          <img :src="$page.props.global_url+'imgs/aviso_portal.jpeg'" alt="" class="img-fluid">
         </div>
         <div class="modal-footer bg-light justify-items-start">
-            <a href="https://bitrix24public.com//servimercadeo.bitrix24.es/docs/pub/73d6821c64bf3b243898405bed08105c/download/?&amp;token=u6rund6rthg0" target="_blank" class="btn btn-primary">
-                <i class="icon-download"></i>Formato S&M
-            </a>
-            <a href="https://bitrix24public.com/servimercadeo.bitrix24.es/docs/pub/0064931ffc210394fd086351e12a1957/download/?&amp;token=sujwpr4ymtja" target="_blank" class="btn btn-primary">
-                <i class="icon-download"></i>Formato Servimercadeo
-            </a>
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" @click="vercom = false">OK</button>
         </div>
       </div>
