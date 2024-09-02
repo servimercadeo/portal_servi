@@ -193,7 +193,6 @@ class PayingsController extends Controller
         $file_name = $paying->file_name;
 
         if($request->file('doc') != null){
-            dump('entre');
             if( $request->input('file_name') != ''){
                 $file_name = $request->input('file_name');
                 unlink(storage_path().'/app/files_'.$paying->tipo.'/'.$file_name);
