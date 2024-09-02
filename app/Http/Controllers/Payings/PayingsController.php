@@ -189,6 +189,9 @@ class PayingsController extends Controller
         ]);
         $link = $request->input('_link');
 
+        $paying = Paying::find($request->input('id'));
+        $file_name = $paying->file_name;
+
         if($request->file('doc') != null){
             if( $request->input('file_name') != ''){
                 $file_name = $request->input('file_name');
@@ -204,7 +207,6 @@ class PayingsController extends Controller
             $link = config('app.global_url').$file->storeAs('files_churn', $file_name);
         }
 
-        $paying = Paying::find($request->input('id'));
         $paying->_link = $link;
         $paying->operation = $request->input('operation');
         $paying->tipo = $request->input('tipo');
