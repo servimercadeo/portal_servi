@@ -105,6 +105,7 @@
             },
             upFile(event){
                 this.form.doc = event.target.files[0]
+                console.log(this.form.doc)
             }
         },
         mounted() {
