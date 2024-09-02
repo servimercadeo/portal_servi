@@ -103,6 +103,9 @@
                     return pais.id != x
                 })
             },
+            upFile(event){
+                this.form.doc = event.target.files[0]
+            }
         },
         mounted() {
             console.log(this.paying)
