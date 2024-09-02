@@ -196,14 +196,14 @@ class PayingsController extends Controller
             dump('entre');
             if( $request->input('file_name') != ''){
                 $file_name = $request->input('file_name');
-                unlink(storage_path().'files_'.$paying->tipo.$file_name);
+                unlink(storage_path().'/files_'.$paying->tipo.$file_name);
             }
             $file = $request->file('doc');
             $file_name = $request->input('operation').'_'.$request->input('periodo').'_'.(($request->input('id_pais') == 1)?'COL': 'ECU').'.'.$file->getClientOriginalExtension();
             $path = storage_path().'/app/files_'.$paying->tipo.'/'.$file_name;
 
             if(file_exists($path)){
-                unlink(storage_path().'files_'.$request->input('tipo').$file_name);
+                unlink(storage_path().'/files_'.$request->input('tipo').$file_name);
             }
             $link = config('app.global_url').$file->storeAs('files_'.$request->input('tipo'), $file_name);
         }
